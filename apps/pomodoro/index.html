@@ -3,21 +3,44 @@
 <head>
   <title>Pomodoro Timer</title>
   <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <div class="container">
-    <h1>Pomodoro Timer</h1>
-    <div id="timer">
-      <div id="time-left">25:00</div>
-      <div>
-        <button id="start">Start</button>
-        <button id="pause">Pause</button>
-        <button id="reset">Reset</button>
-      </div>
+<div class="container">
+  <h1>Pomodoro Timer</h1>
+
+  <div class="input-group">
+    <label for="pomodoro-time">Pomodoro Time (minutes):</label>
+    <input type="number" id="pomodoro-time" name="pomodoro-time" value="25" min="1">
+  </div>
+
+  <div class="input-group">
+    <label for="category">Category:</label>
+    <input type="text" id="category" name="category" placeholder="e.g., Study, Work, Coding">
+  </div>
+
+  <div class="input-group">
+    <label for="notes">Notes:</label>
+    <textarea id="notes" name="notes" placeholder="Add any notes here..."></textarea>
+  </div>
+
+  <div id="timer">
+    <div id="time-left">25:00</div>
+    <div class="buttons">
+      <button id="start">Start</button>
+      <button id="pause">Pause</button>
+      <button id="reset">Reset</button>
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <div id="history">
+    <h2>Past Pomodoros</h2>
+    <ul id="pomodoro-list"></ul>
+  </div>
+
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
