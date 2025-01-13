@@ -1,32 +1,157 @@
 body {
-    font-family: sans-serif;
-    background-color: #f4f4f4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    flex-direction: column; /* Align items vertically */
-    margin: 0;
-}
+    font-family: 'Press Start 2P', cursive;
+    background-color: #74b9ff;
+    overflow-x: hidden;
+  }
 
-.container {
+  .container {
     display: flex;
-    flex-wrap: wrap; /* Allow cards to wrap */
+    flex-wrap: wrap;
     justify-content: center;
-}
-
-.card {
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin: 10px;
     padding: 20px;
-    width: 300px; /* Adjust width as needed */
-    text-align: center;
-    cursor: pointer; /* Indicate that the card is clickable */
-    transition: transform 0.2s ease; /* Add a smooth transition effect */
-}
+  }
 
-.card:hover {
-    transform: translateY(-5px); /* Move the card slightly up on hover */
-}
+  .card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 20px;
+    padding: 30px;
+    width: 300px;
+    text-align: center;
+    cursor: url('magic-wand.png'), auto; /* Magic wand cursor */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative; /* For positioning sparkles */
+    overflow: hidden; /* Keep sparkles inside the card */
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  }
+
+  .card::before { /* Sparkles effect */
+    content: '';
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    width: 200px;
+    height: 200px;
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.8) 2px, transparent 2px);
+    background-size: 10px 10px;
+    animation: sparkle 2s linear infinite;
+  }
+
+  @keyframes sparkle {
+    0% {
+      transform: translate(0, 0);
+    }
+    100% {
+      transform: translate(50px, 50px);
+    }
+  }
+
+  .card a { /* Style links to cover the whole card */
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .card a::before { /* Full-screen animation on click */
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    z-index: 1; /* Ensure it's on top */
+  }
+
+  .card a:active::before {
+    transform: translate(-50%, -50%) scale(3);
+    opacity: 1;
+  }
+
+  /* Mario CSS */
+  .mario {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    animation: mario-walk 0.5s steps(2) infinite;
+  }
+
+  .hat {
+    background-color: #e74c3c;
+    width: 30px;
+    height: 15px;
+    border-radius: 50% 50% 0 0;
+    margin: 0 auto;
+  }
+
+  .head {
+    background-color: #f1c40f;
+    width: 40px;
+    height: 25px;
+    border-radius: 50%;
+    margin: -5px auto 0;
+  }
+
+  .body {
+    background-color: #e74c3c;
+    width: 40px;
+    height: 20px;
+    margin: 5px auto 0;
+  }
+
+  .left-arm, .right-arm {
+    background-color: #f1c40f;
+    width: 15px;
+    height: 10px;
+    border-radius: 10px;
+    position: absolute;
+    top: 30px;
+  }
+
+  .left-arm {
+    left: 0;
+  }
+
+  .right-arm {
+    right: 0;
+  }
+
+  .left-leg, .right-leg {
+    background-color: #2980b9;
+    width: 10px;
+    height: 15px;
+    position: absolute; /* Add position absolute */
+    bottom: 0; /* Position at the bottom */
+    border-radius: 0 0 10px 10px;
+  }
+
+  .left-leg {
+    left: 10px; /* Adjust left position */
+  }
+
+  .right-leg {
+    right: 10px; /* Adjust right position */
+  }
+
+
+  @keyframes mario-walk {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(10px); }
+    100% { transform: translateX(0); }
+  }
